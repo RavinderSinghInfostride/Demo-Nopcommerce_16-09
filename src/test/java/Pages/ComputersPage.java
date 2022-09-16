@@ -6,10 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,7 +44,9 @@ public class ComputersPage {
     By zipInput = By.xpath("//input[@name='BillingNewAddress.ZipPostalCode']");
     By phoneNumberInput = By.xpath("//input[@name='BillingNewAddress.PhoneNumber']");
     By continueAfterAddressDetailsButton = By.xpath("//button[contains(@class,'new-address-next-step-button')][@name='save']");
-
+    By continueButton2 = By.xpath("//button[contains(@class,'shipping-method-next-step-button')]");
+    By continueButton3 = By.xpath("//button[contains(@class,'payment-method-next-step-button')]");
+    By continueButton4 = By.xpath("//button[contains(@class,'payment-info-next-step-button')]");
     public ComputersPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -89,7 +89,7 @@ public class ComputersPage {
         String address1 = sheet.getRow(1).getCell(6).getStringCellValue();
         driver.findElement(firstNameInput).sendKeys(firstName);
         driver.findElement(lastNameInput).sendKeys(lastName);
-        driver.findElement(emailInput).sendKeys("ssjsjsdnl@email.com");
+        driver.findElement(emailInput).sendKeys(email);
         driver.findElement(passwordInput).sendKeys(password);
         driver.findElement(confirmPasswordInput).sendKeys(confirmPassword);
         driver.findElement(registerNextPageButton).click();
@@ -103,5 +103,8 @@ public class ComputersPage {
         driver.findElement(zipInput).sendKeys("130071");
         driver.findElement(phoneNumberInput).sendKeys("9999999999");
         driver.findElement(continueAfterAddressDetailsButton).click();
+        driver.findElement(continueButton2).click();
+        driver.findElement(continueButton3).click();
+        driver.findElement(continueButton4).click();
     }
 }
