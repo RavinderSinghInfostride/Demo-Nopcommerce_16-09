@@ -7,12 +7,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+
 import java.net.MalformedURLException;
 
 public class BaseClass {
     protected PageFactory pageFactory;
     WebDriver driver;
 
+    @Parameters("browserName")
     @BeforeClass
     public void setup(String browserName) throws MalformedURLException {
         if (browserName.equalsIgnoreCase("chrome")) {
@@ -30,8 +33,8 @@ public class BaseClass {
         }
     }
 
-    @AfterClass
-    public void close() {
-        driver.close();
-    }
+//    @AfterClass
+//    public void close() {
+//        driver.close();
+//    }
 }
