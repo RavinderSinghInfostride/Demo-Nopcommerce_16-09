@@ -1,0 +1,6 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Cases" verbose="1">
+    <listeners>
+        <listener class-name="Report.Listener"/>
+    </listeners>
+</suite>
