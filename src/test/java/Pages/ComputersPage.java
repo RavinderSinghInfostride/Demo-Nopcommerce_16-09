@@ -47,6 +47,8 @@ public class ComputersPage {
     By continueButton2 = By.xpath("//button[contains(@class,'shipping-method-next-step-button')]");
     By continueButton3 = By.xpath("//button[contains(@class,'payment-method-next-step-button')]");
     By continueButton4 = By.xpath("//button[contains(@class,'payment-info-next-step-button')]");
+    By finalProductVerifyCheckout = By.xpath("//span[@class='sku-number']");
+
     public ComputersPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -63,8 +65,8 @@ public class ComputersPage {
         driver.findElement(addToCartButton).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(crossButtonNotification));
         driver.findElement(shoppingCartLink).click();
-        boolean isAdminDisplayed = driver.findElement(productAddedVerify).isDisplayed();
-        Assert.assertTrue(isAdminDisplayed, "Wrong product in cart");
+        boolean isProductDisplayed = driver.findElement(productAddedVerify).isDisplayed();
+        Assert.assertTrue(isProductDisplayed, "Wrong product in cart");
     }
 
     public void checkoutFromCart() throws IOException {
@@ -103,8 +105,14 @@ public class ComputersPage {
         driver.findElement(zipInput).sendKeys("130071");
         driver.findElement(phoneNumberInput).sendKeys("9999999999");
         driver.findElement(continueAfterAddressDetailsButton).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton2));
         driver.findElement(continueButton2).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton3));
         driver.findElement(continueButton3).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton4));
         driver.findElement(continueButton4).click();
+        boolean isProductDisplayed = driver.findElement(finalProductVerifyCheckout).isDisplayed();
+        Assert.assertTrue(isProductDisplayed, "Wrong product in cart");
+
     }
 }
