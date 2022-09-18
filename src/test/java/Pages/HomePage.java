@@ -24,6 +24,7 @@ public class HomePage {
     By searchProductButton = By.xpath("//button[contains(@class,'search-box-button')]");
     By productSearchVerify = By.xpath("//a[contains(text(),'Nikon D5500 DSLR')]");
     By logoutLink = By.xpath("//a[contains(text(),'Log out')]");
+
     int random = (int) (Math.random() * (99 - 11 + 1) + 11);
 
     public HomePage(WebDriver driver) {
@@ -43,7 +44,6 @@ public class HomePage {
         XSSFSheet sheet = wb.getSheet("Sheet1");
         String firstName = sheet.getRow(1).getCell(0).getStringCellValue();
         String lastName = sheet.getRow(1).getCell(1).getStringCellValue();
-        String productToSearch = sheet.getRow(1).getCell(2).getStringCellValue();
         String email = firstName + lastName + random + "@email.com";
         driver.findElement(firstNameInput).sendKeys(firstName);
         driver.findElement(lastNameInput).sendKeys(lastName);
