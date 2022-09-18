@@ -3,4 +3,12 @@
     <listeners>
         <listener class-name="Report.Listener"/>
     </listeners>
+
+    <test name="Verify register an user and search any product">
+        <parameter name="browserName" value="chrome"></parameter>
+        <parameter name="testRunId1" value="TCTC-1"/>
+        <classes>
+            <class name="Test.RegisterUserAndSearchAnyProduct"/>
+        </classes>
+    </test>
 </suite>
