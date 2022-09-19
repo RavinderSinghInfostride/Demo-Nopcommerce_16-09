@@ -4,7 +4,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -39,8 +38,11 @@ public class BooksPage {
     By phoneNumberInput = By.xpath("//input[@name='BillingNewAddress.PhoneNumber']");
     By continueAfterAddressDetailsButton = By.xpath("//button[contains(@class,'new-address-next-step-button')][@name='save']");
     By continueButton2 = By.xpath("//button[contains(@class,'shipping-method-next-step-button')]");
-    By continueButton3  = By.xpath("//button[contains(@class,'payment-method-next-step-button')]");
+    By continueButton3 = By.xpath("//button[contains(@class,'payment-method-next-step-button')]");
     By continueButton4 = By.xpath("//button[contains(@class,'payment-info-next-step-button')]");
+    By confirmOrderButton = By.xpath("//button[contains(@class,'confirm-order-next-step-button')]");
+    By orderConfirmNotification = By.xpath("//div[@class='title']//strong[contains(text(),'Your order has been successfully processed!')]");
+    By orderCheckoutContinueButton = By.xpath("//button[contains(@class,'order-completed-continue-button')]");
     By logoutLink = By.xpath("//a[contains(text(),'Log out')]");
 
     int random = (int) (Math.random() * (99 - 11 + 1) + 11);
@@ -89,7 +91,7 @@ public class BooksPage {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(notificationCrossBtn));
         driver.findElement(shoppingCartLink).click();
         String isProductAddedRight = driver.findElement(productAddedVerify).getText();
-        Assert.assertEquals("Fahrenheit 451 by Ray Bradbury",isProductAddedRight);
+        Assert.assertEquals("Fahrenheit 451 by Ray Bradbury", isProductAddedRight);
     }
 
     public void checkout() throws IOException {
@@ -119,5 +121,15 @@ public class BooksPage {
         driver.findElement(continueButton3).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton4));
         driver.findElement(continueButton4).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(productAddedVerify));
+        String isOrderSuccessfullyPlaced = driver.findElement(productAddedVerify).getText();
+        Assert.assertEquals("Fahrenheit 451 by Ray Bradbury", isOrderSuccessfullyPlaced);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(confirmOrderButton));
+        driver.findElement(confirmOrderButton).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(orderConfirmNotification));
+        String isOrderSuccessfullyPlacedNotification = driver.findElement(orderConfirmNotification).getText();
+        Assert.assertEquals("Your order has been successfully processed!", isOrderSuccessfullyPlacedNotification);
+        driver.findElement(orderCheckoutContinueButton).click();
+        driver.findElement(logoutLink).click();
     }
 }
