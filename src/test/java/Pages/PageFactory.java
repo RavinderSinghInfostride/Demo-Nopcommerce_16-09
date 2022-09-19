@@ -5,18 +5,18 @@ import org.openqa.selenium.WebDriver;
 public class PageFactory {
     WebDriver driver;
 
-    private HomePage homePage;
+    private BooksPage booksPage;
 
     public PageFactory(WebDriver driver) {
         this.driver = driver;
     }
 
-    public HomePage getHomePage()
+    public BooksPage getBooksPage()
     {
-        if(homePage == null)
+        if(booksPage == null)
         {
-            homePage = new HomePage(driver);
+            booksPage = new BooksPage(driver);
         }
-        return homePage;
+        return booksPage;
     }
 }

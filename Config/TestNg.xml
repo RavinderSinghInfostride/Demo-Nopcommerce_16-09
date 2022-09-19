@@ -8,7 +8,7 @@
         <parameter name="browserName" value="chrome"></parameter>
         <parameter name="testRunId1" value="TCTC-1"/>
         <classes>
-            <class name="Test.RegisterUserAndSearchAnyProduct"/>
+            <class name="Test.RegisterUserAndAddBooksToCartAndCheckout"/>
         </classes>
     </test>
 </suite>
